@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__myagent__switch_agent",
+      "mcp__myagent__list_agents",
+      "Skill(update-config)"
+    ]
+  }
+}
