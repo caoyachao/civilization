@@ -33,6 +33,7 @@ jobs:
       - name: Deploy to gh-pages
         run: |
           cd dist
+          touch .nojekyll
           git init
           git checkout -b gh-pages
           git config user.email "github-actions[bot]@users.noreply.github.com"
