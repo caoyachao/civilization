@@ -11,6 +11,17 @@ interface Particle {
   alpha: number;
 }
 
+interface Meteor {
+  x: number;
+  y: number;
+  length: number;
+  angle: number;
+  speed: number;
+  alpha: number;
+  decay: number;
+  width: number;
+}
+
 export function Starfield() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -31,6 +42,7 @@ export function Starfield() {
 
     const particleCount = Math.min(Math.floor((width * height) / 12000), 120);
     const particles: Particle[] = [];
+    const meteors: Meteor[] = [];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -92,6 +104,49 @@ export function Starfield() {
         ctx.arc(px, py, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
         ctx.fill();
+      }
+
+      // Spawn meteors occasionally
+      if (!reducedMotionRef.current && Math.random() < 0.008) {
+        const startX = Math.random() * width * 1.2 - width * 0.1;
+        const startY = -60;
+        meteors.push({
+          x: startX,
+          y: startY,
+          length: Math.random() * 100 + 60,
+          angle: Math.PI / 3 + (Math.random() - 0.5) * 0.4,
+          speed: Math.random() * 12 + 14,
+          alpha: Math.random() * 0.3 + 0.7,
+          decay: Math.random() * 0.008 + 0.008,
+          width: Math.random() * 1.5 + 1,
+        });
+      }
+
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const m = meteors[i];
+        m.x += Math.cos(m.angle) * m.speed;
+        m.y += Math.sin(m.angle) * m.speed;
+        m.alpha -= m.decay;
+
+        if (m.alpha <= 0 || m.x > width + 100 || m.y > height + 100) {
+          meteors.splice(i, 1);
+          continue;
+        }
+
+        const tailX = m.x - Math.cos(m.angle) * m.length;
+        const tailY = m.y - Math.sin(m.angle) * m.length;
+        const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${m.alpha})`);
+        grad.addColorStop(0.4, `rgba(255, 255, 255, ${m.alpha * 0.3})`);
+        grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = m.width;
+        ctx.lineCap = "round";
+        ctx.stroke();
       }
 
       animationId = requestAnimationFrame(draw);

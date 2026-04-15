@@ -7,6 +7,7 @@ import { WarpReveal } from "@/components/warp-reveal";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { WeaponBadge } from "@/components/weapon-badge";
 
 const groups = [
   { key: "1-3", label: { zh: "1-3 级", en: "Tiers 1-3" }, tiers: tiers.filter((t) => t.id >= 1 && t.id <= 3) },
@@ -83,9 +84,12 @@ export default function WarfarePage() {
                           <div className="mb-2 text-xs text-white/40">{lang === "zh" ? "代表武器" : "Representative Weapons"}</div>
                           <div className="flex flex-wrap gap-2">
                             {tier.warfare.weapons.map((item, i) => (
-                              <Badge key={i} className="bg-white/10 text-white/90 hover:bg-white/15">
-                                {t(item, lang)}
-                              </Badge>
+                              <WeaponBadge
+                                key={i}
+                                name={item.name}
+                                desc={item.desc}
+                                className="cursor-default rounded-full border border-transparent bg-white/10 px-2.5 py-0.5 text-xs text-white/90 transition-colors hover:bg-white/15"
+                              />
                             ))}
                           </div>
                         </div>

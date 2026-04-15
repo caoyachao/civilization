@@ -4,7 +4,7 @@ import { tiers, destructionMilestones } from "@/lib/data";
 import { t, useLang } from "@/lib/i18n";
 import { WarpReveal } from "@/components/warp-reveal";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { WeaponBadge } from "@/components/weapon-badge";
 
 export default function DestructionPage() {
   const lang = useLang();
@@ -99,13 +99,13 @@ export default function DestructionPage() {
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
                     {tier.destruction.weapons.map((w, idx) => (
-                      <Badge
+                      <WeaponBadge
                         key={idx}
-                        className="border-transparent text-white/90"
+                        name={w.name}
+                        desc={w.desc}
+                        className="cursor-default rounded-full border border-transparent px-2.5 py-0.5 text-xs text-white/90"
                         style={{ backgroundColor: `${tier.color}25` }}
-                      >
-                        {t(w, lang)}
-                      </Badge>
+                      />
                     ))}
                   </div>
                 </CardContent>

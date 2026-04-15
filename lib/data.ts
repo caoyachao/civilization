@@ -18,13 +18,13 @@ export interface CivilizationTier {
     logic: Bilingual;
     means: Bilingual;
     tactics: Bilingual[];
-    weapons: Bilingual[];
+    weapons: { name: Bilingual; desc: Bilingual }[];
     gambit: Bilingual;
   };
   destruction: {
     planet: boolean;
     star: boolean;
-    weapons: Bilingual[];
+    weapons: { name: Bilingual; desc: Bilingual }[];
   };
   individual?: {
     status: Bilingual;
@@ -71,11 +71,11 @@ export const tiers: CivilizationTier[] = [
         { zh: "骑兵绕后", en: "Cavalry flanking" },
       ],
       weapons: [
-        { zh: "青铜剑", en: "Bronze swords" },
-        { zh: "复合弓", en: "Composite bows" },
-        { zh: "投石机", en: "Catapults" },
-        { zh: "战象", en: "War elephants" },
-        { zh: "城墙要塞", en: "Fortified walls" },
+        { name: { zh: "青铜剑", en: "Bronze swords" }, desc: { zh: "锋利但易折断，冶金代差拉开战场胜负。", en: "Sharp yet brittle; metallurgical gaps decide battles." } },
+        { name: { zh: "复合弓", en: "Composite bows" }, desc: { zh: "多层材料叠加，射程与穿透力远超单体弓。", en: "Layered materials yield superior range and penetration." } },
+        { name: { zh: "投石机", en: "Catapults" }, desc: { zh: "利用杠杆原理抛掷巨石，攻城战的王牌。", en: "Leverage hurls boulders at walls — the ace of siege warfare." } },
+        { name: { zh: "战象", en: "War elephants" }, desc: { zh: "身披铁甲的巨型生物兵器，冲锋时碾碎方阵。", en: "Armored living weapons that crush phalanxes on the charge." } },
+        { name: { zh: "城墙要塞", en: "Fortified walls" }, desc: { zh: "土木工程的最高体现，决定文明能否存续。", en: "The pinnacle of civil engineering and survival." } },
       ],
       gambit: { zh: "地形利用、士气维持、补给线长度", en: "Terrain advantage, morale, supply line length" },
     },
@@ -110,11 +110,11 @@ export const tiers: CivilizationTier[] = [
         { zh: "地毯式轰炸", en: "Carpet bombing" },
       ],
       weapons: [
-        { zh: "坦克集群", en: "Tank formations" },
-        { zh: "毒气弹", en: "Chemical weapons" },
-        { zh: "战列舰主炮", en: "Battleship cannons" },
-        { zh: "战略轰炸机", en: "Strategic bombers" },
-        { zh: "原子弹（末期）", en: "Atomic bombs (late stage)" },
+        { name: { zh: "坦克集群", en: "Tank formations" }, desc: { zh: "钢铁履带碾平堑壕，火力与机动的完美结合。", en: "Steel treads flatten trenches; firepower meets mobility." } },
+        { name: { zh: "毒气弹", en: "Chemical weapons" }, desc: { zh: "无差别的化学杀戮，风向决定敌我伤亡。", en: "Indiscriminate chemical slaughter where wind decides casualties." } },
+        { name: { zh: "战列舰主炮", en: "Battleship cannons" }, desc: { zh: "口径即正义，一轮齐射可毁灭沿海城市。", en: "Caliber is justice; a salvo can erase coastal cities." } },
+        { name: { zh: "战略轰炸机", en: "Strategic bombers" }, desc: { zh: "跨越国界的天际死神，将工厂与平民一起焚烧。", en: "Transnational harbingers of death that torch factories and civilians alike." } },
+        { name: { zh: "原子弹（末期）", en: "Atomic bombs (late stage)" }, desc: { zh: "20千吨TNT当量，宣告人类掌握了恒星之火。", en: "20 kilotons — humanity grasps stellar fire." } },
       ],
       gambit: { zh: "工业产能、石油生命线、制空权争夺", en: "Industrial capacity, oil lifelines, air supremacy" },
     },
@@ -149,11 +149,11 @@ export const tiers: CivilizationTier[] = [
         { zh: "生物靶向清除（针对特定基因）", en: "Biological targeting (gene-specific)" },
       ],
       weapons: [
-        { zh: "电磁脉冲弹", en: "EMP weapons" },
-        { zh: "AI自主杀人机器", en: "Autonomous lethal AI" },
-        { zh: "基因编辑病毒", en: "Gene-edited viruses" },
-        { zh: "量子加密破解器", en: "Quantum cryptanalyzers" },
-        { zh: "深度伪造舆论武器", en: "Deepfake psyops" },
+        { name: { zh: "电磁脉冲弹", en: "EMP weapons" }, desc: { zh: "一次爆炸让整座城市退回蒸汽时代。", en: "One blast sends a city back to the steam age." } },
+        { name: { zh: "AI自主杀人机器", en: "Autonomous lethal AI" }, desc: { zh: "无需人类授权的杀戮决策，伦理的灰色深渊。", en: "Kill decisions without human approval — an ethical abyss." } },
+        { name: { zh: "基因编辑病毒", en: "Gene-edited viruses" }, desc: { zh: "针对特定族群的生物密钥，实验室里的种族灭绝。", en: "Biological keys targeting specific ethnicities — genocide in a lab." } },
+        { name: { zh: "量子加密破解器", en: "Quantum cryptanalyzers" }, desc: { zh: "在敌方发送消息的同时完成窃听与篡改。", en: "Eavesdrop and tamper while the enemy is still sending." } },
+        { name: { zh: "深度伪造舆论武器", en: "Deepfake psyops" }, desc: { zh: "让领袖在屏幕上承认自己从未犯过的罪行。", en: "Make leaders confess crimes they never committed — on screen." } },
       ],
       gambit: { zh: "算法迭代速度、数据主权、生物信息安全", en: "Algorithm iteration speed, data sovereignty, bio-info security" },
     },
@@ -188,10 +188,10 @@ export const tiers: CivilizationTier[] = [
         { zh: "小行星轨道偏转撞击", en: "Asteroid orbital deflection impact" },
       ],
       weapons: [
-        { zh: "聚变鱼雷（千万吨级干净核弹）", en: "Fusion torpedoes (multi-megaton clean nukes)" },
-        { zh: "轨道反射镜阵列（聚焦阳光烧毁地表）", en: "Orbital mirror arrays (focus sunlight)" },
-        { zh: "磁轨炮（将陨石加速至光速1%）", en: "Railguns (accelerate meteors to 1% light speed)" },
-        { zh: "生态改造炸弹（将宜居星球改造为毒气环境）", en: "Eco-bombs (turn habitable planets toxic)" },
+        { name: { zh: "聚变鱼雷（千万吨级干净核弹）", en: "Fusion torpedoes (multi-megaton clean nukes)" }, desc: { zh: "无长期辐射，行星表面的清洗者。", en: "Clean multi-megaton nukes that scrub planetary surfaces." } },
+        { name: { zh: "轨道反射镜阵列（聚焦阳光烧毁地表）", en: "Orbital mirror arrays (focus sunlight)" }, desc: { zh: "将恒星光芒汇聚成死亡射线。", en: "Focus sunlight into death rays from orbit." } },
+        { name: { zh: "磁轨炮（将陨石加速至光速1%）", en: "Railguns (accelerate meteors to 1% light speed)" }, desc: { zh: "动能即是一切，撞击能量等于数百万颗氢弹。", en: "Kinetic energy equals millions of H-bombs on impact." } },
+        { name: { zh: "生态改造炸弹（将宜居星球改造为毒气环境）", en: "Eco-bombs (turn habitable planets toxic)" }, desc: { zh: "不以杀人，而以灭球为目的。", en: "Planet-breaking by design, not merely genocide." } },
       ],
       gambit: { zh: "轨道控制权、行星防御护盾、小行星带机动", en: "Orbital control, planetary defense shields, asteroid belt maneuvering" },
     },
@@ -199,8 +199,8 @@ export const tiers: CivilizationTier[] = [
       planet: true,
       star: false,
       weapons: [
-        { zh: "上帝之杖", en: "Rods from God" },
-        { zh: "生态炸弹", en: "Eco-bombs" },
+        { name: { zh: "上帝之杖", en: "Rods from God" }, desc: { zh: "从轨道投下高密度钨棒，纯粹动能摧毁地表目标。", en: "Dense tungsten rods dropped from orbit; pure kinetic devastation." } },
+        { name: { zh: "生态炸弹", en: "Eco-bombs" }, desc: { zh: "系统性瓦解大气与生态系统，使宜居星球沦为死星。", en: "Systematically dismantle atmospheres and ecosystems, turning habitable worlds dead." } },
       ],
     },
     individual: {
@@ -229,10 +229,10 @@ export const tiers: CivilizationTier[] = [
         { zh: "恒星闪烁通信干扰", en: "Stellar flicker comms jamming" },
       ],
       weapons: [
-        { zh: "反物质湮灭弹（grams级抹除城市）", en: "Antimatter annihilation bombs (gram-level city erasure)" },
-        { zh: "恒星耀斑诱导器", en: "Stellar flare inducers" },
-        { zh: "真空衰变触发器（实验性）", en: "Vacuum decay triggers (experimental)" },
-        { zh: "生态闭环病毒", en: "Closed-loop ecosystem viruses" },
+        { name: { zh: "反物质湮灭弹（grams级抹除城市）", en: "Antimatter annihilation bombs (gram-level city erasure)" }, desc: { zh: "正反物质相遇，100%质能转换，gram级即可抹除城市。", en: "Matter-antimatter collision achieves 100% mass-energy conversion; grams erase cities." } },
+        { name: { zh: "恒星耀斑诱导器", en: "Stellar flare inducers" }, desc: { zh: "让敌星系的太阳发狂，烧毁所有电子设备与大气层。", en: "Drive enemy suns mad, burning electronics and atmospheres alike." } },
+        { name: { zh: "真空衰变触发器（实验性）", en: "Vacuum decay triggers (experimental)" }, desc: { zh: "可能同归于尽的宇宙级武器，改写局部物理法则。", en: "Potentially suicidal cosmic weapons that rewrite local physics." } },
+        { name: { zh: "生态闭环病毒", en: "Closed-loop ecosystem viruses" }, desc: { zh: "专门针对世代飞船的封闭生态系统，一剑封喉。", en: "Precisely target generation-ship biospheres — one strike, fatal." } },
       ],
       gambit: { zh: "时间 dilation 战术、世代飞船忠诚度、跨光年补给线", en: "Time dilation tactics, generation-ship loyalty, light-year supply lines" },
     },
@@ -240,8 +240,8 @@ export const tiers: CivilizationTier[] = [
       planet: true,
       star: false,
       weapons: [
-        { zh: "反物质湮灭弹", en: "Antimatter bombs" },
-        { zh: "相对论动能撞击（RKKV）", en: "Relativistic kill vehicles" },
+        { name: { zh: "反物质湮灭弹", en: "Antimatter bombs" }, desc: { zh: "正反物质湮灭释放全部质能，一击即可将行星化为等离子火球。", en: "Total mass-energy release turns planets into plasma fireballs in a single strike." } },
+        { name: { zh: "相对论动能撞击（RKKV）", en: "Relativistic kill vehicles" }, desc: { zh: "将近光速飞行的飞船或陨石作为动能炮弹，撞击能量堪比恒星耀斑。", en: "Near-light-speed vessels or meteors as kinetic projectiles; impact rivals stellar flares." } },
       ],
     },
     individual: {
@@ -270,10 +270,10 @@ export const tiers: CivilizationTier[] = [
         { zh: "时间银行战争（借贷未来资源进行当下战争）", en: "Time-bank warfare (borrow future resources)" },
       ],
       weapons: [
-        { zh: "奇点炸弹（人造黑洞，24小时蒸发前吞噬一切）", en: "Singularity bombs (artificial black holes)" },
-        { zh: "时空裂缝发生器（将区域切割出正常空间流）", en: "Spacetime fracture generators" },
-        { zh: "惯性消除场", en: "Inertia cancellation fields" },
-        { zh: "超光速水雷", en: "FTL mines" },
+        { name: { zh: "奇点炸弹（人造黑洞，24小时蒸发前吞噬一切）", en: "Singularity bombs (artificial black holes)" }, desc: { zh: "在战场上制造一个临时黑洞，24小时霍金蒸发前吞噬一切。", en: "Create a temporary black hole on the battlefield that devours everything before evaporating." } },
+        { name: { zh: "时空裂缝发生器（将区域切割出正常空间流）", en: "Spacetime fracture generators" }, desc: { zh: "把敌人放逐到时间的荒原，与正常宇宙永不再见。", en: "Exile enemies to temporal wastelands, never to reunite with normal space-time." } },
+        { name: { zh: "惯性消除场", en: "Inertia cancellation fields" }, desc: { zh: "让敌方舰队在瞬间从极速变为静止，结构自我撕裂。", en: "Reduce enemy fleets from extreme speed to zero instantly, tearing structures apart." } },
+        { name: { zh: "超光速水雷", en: "FTL mines" }, desc: { zh: "在星门出入口布设，跃出瞬间即被引爆。", en: "Laid at stargate exits; detonate the instant a ship emerges from FTL." } },
       ],
       gambit: { zh: "星门控制权、时间线稳定性、超空间航道垄断", en: "Stargate control, timeline stability, hyperspace lane monopoly" },
     },
@@ -281,9 +281,9 @@ export const tiers: CivilizationTier[] = [
       planet: true,
       star: true,
       weapons: [
-        { zh: "奇点炸弹", en: "Singularity bombs" },
-        { zh: "恒星诱导超新星", en: "Induced supernovae" },
-        { zh: "时空裂缝切割", en: "Spacetime fracture" },
+        { name: { zh: "奇点炸弹", en: "Singularity bombs" }, desc: { zh: "人造微型黑洞落入恒星核心，从内部吞噬并瓦解整颗恒星。", en: "Artificial micro black holes sink into stellar cores, consuming stars from within." } },
+        { name: { zh: "恒星诱导超新星", en: "Induced supernovae" }, desc: { zh: "操控恒星演化进程，使其提前爆发为超新星，照亮整个星系。", en: "Manipulate stellar evolution to trigger premature supernovae, illuminating entire galaxies." } },
+        { name: { zh: "时空裂缝切割", en: "Spacetime fracture" }, desc: { zh: "将恒星或其所在空间区域从正常时空中切除，使其在宇宙中消失。", en: "Cut a star or its spatial region out of normal space-time, erasing it from the universe." } },
       ],
     },
     individual: {
@@ -312,10 +312,10 @@ export const tiers: CivilizationTier[] = [
         { zh: "高维俯视打击（从四维空间直接攻击三维目标内部）", en: "Higher-dimensional俯视 strikes (attack 3D interiors from 4D)" },
       ],
       weapons: [
-        { zh: "二向箔（降维武器）", en: "Two-dimensional foils (dimensional reduction)" },
-        { zh: "维度稳定锚（防止被降维）", en: "Dimensional stability anchors" },
-        { zh: "克莱因瓶炸弹（在四维空间爆炸）", en: "Klein bottle bombs (detonate in 4D)" },
-        { zh: "概率波坍塌器", en: "Probability wave collapser" },
+        { name: { zh: "二向箔（降维武器）", en: "Two-dimensional foils (dimensional reduction)" }, desc: { zh: "将三维空间不可逆地压缩为二维平面，宇宙级清理工具。", en: "Irreversibly compress 3D space into 2D planes — a cosmic cleansing tool." } },
+        { name: { zh: "维度稳定锚（防止被降维）", en: "Dimensional stability anchors" }, desc: { zh: "在维度风暴中保持自身结构的定海神针。", en: "The needle that calms the sea, preserving structure amid dimensional storms." } },
+        { name: { zh: "克莱因瓶炸弹（在四维空间爆炸）", en: "Klein bottle bombs (detonate in 4D)" }, desc: { zh: "三维生物无法观测、无法防御的死亡之花。", en: "Death blossoms in 4D, unobservable and indefensible by 3D beings." } },
+        { name: { zh: "概率波坍塌器", en: "Probability wave collapser" }, desc: { zh: "将量子叠加态强制坍缩，抹除敌方所有可能性分支。", en: "Force quantum superposition to collapse, erasing all enemy probability branches." } },
       ],
       gambit: { zh: "维度深度、高维情报战、口袋宇宙规则设定权", en: "Dimensional depth, higher-dimensional intel warfare, pocket-universe rule-setting" },
     },
@@ -323,9 +323,9 @@ export const tiers: CivilizationTier[] = [
       planet: true,
       star: true,
       weapons: [
-        { zh: "二向箔（降维打击）", en: "Two-dimensional foils" },
-        { zh: "高维俯视打击", en: "Higher-dimensional strikes" },
-        { zh: "口袋宇宙陷阱", en: "Pocket universe traps" },
+        { name: { zh: "二向箔（降维打击）", en: "Two-dimensional foils" }, desc: { zh: "一张薄片掠过，三维星系化为二维画卷，所有物质结构崩解。", en: "A thin sheet sweeps by; a 3D galaxy becomes a 2D painting as all structure disintegrates." } },
+        { name: { zh: "高维俯视打击", en: "Higher-dimensional strikes" }, desc: { zh: "从四维空间直接攻击三维目标内部，任何外壳防御都毫无意义。", en: "Attack 3D interiors from 4D space; outer shells become meaningless." } },
+        { name: { zh: "口袋宇宙陷阱", en: "Pocket universe traps" }, desc: { zh: "将整颗恒星或行星诱导进闭合时空，永远循环，无法逃逸。", en: "Trap entire stars or planets in closed space-time loops from which there is no escape." } },
       ],
     },
     individual: {
@@ -354,10 +354,10 @@ export const tiers: CivilizationTier[] = [
         { zh: "星系碰撞诱导（操控暗物质流使两个星系相撞）", en: "Galaxy collision induction" },
       ],
       weapons: [
-        { zh: "中子星子弹（压缩中子星物质，一击穿透行星）", en: "Neutron-star bullets" },
-        { zh: "真空相变弹（改变局部真空能状态，连锁反应摧毁数千光年）", en: "Vacuum phase-transition bombs" },
-        { zh: "引力波海啸发生器", en: "Gravitational-wave tsunami generators" },
-        { zh: "恒星系级纳米蜂群（灰雾）", en: "Stellar-system-scale nanoswarm (grey goo)" },
+        { name: { zh: "中子星子弹（压缩中子星物质，一击穿透行星）", en: "Neutron-star bullets" }, desc: { zh: "密度高达每立方厘米亿吨，一击穿透行星如穿纸。", en: "Denser than a billion tons per cubic centimeter; one shot pierces planets like paper." } },
+        { name: { zh: "真空相变弹（改变局部真空能状态，连锁反应摧毁数千光年）", en: "Vacuum phase-transition bombs" }, desc: { zh: "将真空的基态改写到更低能级，连锁反应席卷数千光年。", en: "Rewrite local vacuum ground state; chain reactions sweep thousands of light-years." } },
+        { name: { zh: "引力波海啸发生器", en: "Gravitational-wave tsunami generators" }, desc: { zh: "空间本身化作巨浪，撕裂星系结构与恒星轨道。", en: "Space itself becomes a tidal wave, tearing galactic structures and stellar orbits apart." } },
+        { name: { zh: "恒星系级纳米蜂群（灰雾）", en: "Stellar-system-scale nanoswarm (grey goo)" }, desc: { zh: "自我复制的原子级机器云，吞噬一切可用物质与能量。", en: "Self-replicating atomic machine clouds that devour all usable matter and energy." } },
       ],
       gambit: { zh: "恒星操控精度、暗物质布局、物理常数护盾", en: "Stellar manipulation precision, dark matter layout, physical-constant shields" },
     },
@@ -365,10 +365,10 @@ export const tiers: CivilizationTier[] = [
       planet: true,
       star: true,
       weapons: [
-        { zh: "恒星抛射", en: "Stellar coronal ejection" },
-        { zh: "黑洞轰炸", en: "Black hole bombardment" },
-        { zh: "真空相变弹", en: "Vacuum phase-transition bombs" },
-        { zh: "中子星子弹", en: "Neutron-star bullets" },
+        { name: { zh: "恒星抛射", en: "Stellar coronal ejection" }, desc: { zh: "操控恒星喷射日冕物质流，横扫敌方行星系。", en: "Weaponize stellar coronal mass ejections to sweep enemy planetary systems." } },
+        { name: { zh: "黑洞轰炸", en: "Black hole bombardment" }, desc: { zh: "将微型黑洞射入敌方恒星，从内部吞噬直至熄灭。", en: "Inject micro black holes into enemy stars, consuming them from within until they go dark." } },
+        { name: { zh: "真空相变弹", en: "Vacuum phase-transition bombs" }, desc: { zh: "引发真空衰变，以光速扩展的毁灭边界吞噬一切。", en: "Trigger vacuum decay; a destruction front expanding at light speed devours everything." } },
+        { name: { zh: "中子星子弹", en: "Neutron-star bullets" }, desc: { zh: "压缩中子星物质制成的弹丸，贯穿行星地核并引发解体。", en: "Projectiles of compressed neutron-star matter that pierce planetary cores and trigger disintegration." } },
       ],
     },
     individual: {
@@ -397,10 +397,10 @@ export const tiers: CivilizationTier[] = [
         { zh: "多宇宙分支封锁", en: "Multiverse branch封锁" },
       ],
       weapons: [
-        { zh: "因果率切割器（使敌方武器「打不中」）", en: "Causality cutters (enemy weapons 'miss')" },
-        { zh: "时间循环牢笼（将敌方困在5秒循环中）", en: "Time-loop prisons (5-second loops)" },
-        { zh: "历史锚点（锁定自身历史不可被改变）", en: "Historical anchors (lock own history)" },
-        { zh: "宇宙常数狙击枪", en: "Cosmological constant sniper rifles" },
+        { name: { zh: "因果率切割器（使敌方武器「打不中」）", en: "Causality cutters (enemy weapons 'miss')" }, desc: { zh: "在子弹出膛前修改因果链，让命中成为不可能。", en: "Alter causal chains before bullets leave the barrel, making hits impossible." } },
+        { name: { zh: "时间循环牢笼（将敌方困在5秒循环中）", en: "Time-loop prisons (5-second loops)" }, desc: { zh: "永恒重复的炼狱，精神崩溃的终极刑具。", en: "Eternal five-second purgatory — the ultimate instrument of psychological collapse." } },
+        { name: { zh: "历史锚点（锁定自身历史不可被改变）", en: "Historical anchors (lock own history)" }, desc: { zh: "让过去成为铁板一块，任何时间线攻击都无效。", en: "Make the past immutable, rendering all timeline attacks void." } },
+        { name: { zh: "宇宙常数狙击枪", en: "Cosmological constant sniper rifles" }, desc: { zh: "从数亿光年外微调真空能密度，引发敌方星系缓慢解体。", en: "Fine-tune vacuum energy density from eons away, slowly dissolving enemy galaxies." } },
       ],
       gambit: { zh: "时间线稳定性管理、因果复杂度对抗、真空能威慑平衡", en: "Timeline stability management, causal complexity confrontation, vacuum energy deterrence" },
     },
@@ -408,9 +408,9 @@ export const tiers: CivilizationTier[] = [
       planet: true,
       star: true,
       weapons: [
-        { zh: "时间线污染", en: "Timeline contamination" },
-        { zh: "精细结构常数狙击（α-调节）", en: "Fine-structure constant sniping" },
-        { zh: "真空衰变扩散", en: "Vacuum decay spread" },
+        { name: { zh: "时间线污染", en: "Timeline contamination" }, desc: { zh: "向敌方过去发送致命信息，使其在诞生之前自我毁灭。", en: "Send fatal information to the enemy's past, causing self-destruction before birth." } },
+        { name: { zh: "精细结构常数狙击（α-调节）", en: "Fine-structure constant sniping" }, desc: { zh: "微调精细结构常数，使敌方所有原子与化学键失效。", en: "Fine-tune the fine-structure constant, invalidating all enemy atoms and chemical bonds." } },
+        { name: { zh: "真空衰变扩散", en: "Vacuum decay spread" }, desc: { zh: "以光速蔓延的终极同归于尽武器，改写宇宙的基态。", en: "The ultimate mutual-destruction weapon spreading at light speed, rewriting the universe's ground state." } },
       ],
     },
     individual: {
@@ -439,9 +439,9 @@ export const tiers: CivilizationTier[] = [
         { zh: "物理法则重定义（将E=mc²改为E=mc³）", en: "Physical law redefinition (e.g. E=mc² → E=mc³)" },
       ],
       weapons: [
-        { zh: "「遗忘」（让宇宙忘记敌人存在，历史自动修正）", en: "'Oblivion' (universe forgets the enemy existed)" },
-        { zh: "「重新定义胜利」（敌方攻击自动转化为自我祝福）", en: "'Redefine victory' (enemy attacks become self-blessings)" },
-        { zh: "存在性权限锁（将敌方降级为NPC）", en: "Existential permission lock (demote enemy to NPC)" },
+        { name: { zh: "「遗忘」（让宇宙忘记敌人存在，历史自动修正）", en: "'Oblivion' (universe forgets the enemy existed)" }, desc: { zh: "敌人从未存在过，没有任何痕迹，连记忆都被宇宙擦除。", en: "The enemy never existed; no trace remains, not even in memory." } },
+        { name: { zh: "「重新定义胜利」（敌方攻击自动转化为自我祝福）", en: "'Redefine victory' (enemy attacks become self-blessings)" }, desc: { zh: "敌人的毁灭之力在命中前被改写为滋养与祝福。", en: "Enemy destruction is rewritten into nourishment and blessing before impact." } },
+        { name: { zh: "存在性权限锁（将敌方降级为NPC）", en: "Existential permission lock (demote enemy to NPC)" }, desc: { zh: "剥夺敌人的自由意志，使其成为剧本中的背景角色。", en: "Strip enemies of free will, turning them into background characters in a script." } },
       ],
       gambit: { zh: "逻辑自洽性争夺、数学公理体系对抗、叙事层控制", en: "Logical consistency contest, mathematical axiom system confrontation, narrative-layer control" },
     },
@@ -449,8 +449,8 @@ export const tiers: CivilizationTier[] = [
       planet: true,
       star: true,
       weapons: [
-        { zh: "概念抹除（Conceptual Erasure）", en: "Conceptual Erasure" },
-        { zh: "存在性权限锁", en: "Existential Permission Lock" },
+        { name: { zh: "概念抹除（Conceptual Erasure）", en: "Conceptual Erasure" }, desc: { zh: "从逻辑层面删除「敌方」概念，使其在多元宇宙中从未被定义。", en: "Delete the concept of 'enemy' from logic itself, so it was never defined across the multiverse." } },
+        { name: { zh: "存在性权限锁", en: "Existential Permission Lock" }, desc: { zh: "剥夺目标的存在权限，使其从所有现实、历史与可能性中除名。", en: "Revoke the target's right to exist, erasing them from all realities, histories, and possibilities." } },
       ],
     },
     individual: {
