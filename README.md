@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 引力彼端 / Beyond Gravity
 
-## Getting Started
+> 从行星束缚，到存在超越。
+> From planetary bound, to existence transcended.
 
-First, run the development server:
+这是一个面向科幻爱好者的双语静态网站，以图文并茂的方式展示一套 10 级科技文明分级体系。
+
+This is a bilingual static website for sci-fi enthusiasts, showcasing a 10-tier technological civilization classification system through immersive visuals and storytelling.
+
+## 在线访问 / Live Site
+
+https://caoyachao.github.io/civilization/
+
+## 项目亮点 / Highlights
+
+- **双语切换 / Bilingual**: 完整支持中文与英文内容切换
+- **全息星图卡片 / Holographic Cards**: 10 级文明各具特色的差异化卡片设计
+- **跃迁入镜动画 / Warp Reveal**: 基于 Framer Motion 的滚动触发动画，营造星际航行感
+- **星空背景 / Starfield**: 轻量 Canvas 粒子背景，桌面端支持鼠标视差
+- **纯代码视觉 / Code-Only Visuals**: 不依赖外部图床，全部通过 CSS 渐变与 Canvas 绘制
+
+## 页面结构 / Pages
+
+1. **首页 / Home** — 10 级文明主展（Hero + 文明卡片）
+2. **战争 / Warfare** — 战争形态的终极演变
+3. **毁灭 / Destruction** — 行星与恒星毁灭能力谱系
+4. **个体 / Individual** — 个体在战争中的 U 型演变曲线
+
+## 技术栈 / Tech Stack
+
+- [Next.js 16](https://nextjs.org/) (App Router + Static Export)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Lucide React](https://lucide.dev/)
+
+## 本地开发 / Local Development
 
 ```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+浏览器访问 http://localhost:3000/civilization
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000/civilization in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 构建与部署 / Build & Deploy
 
-## Learn More
+```bash
+# 静态导出到 dist 目录
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+项目通过 GitHub Actions 自动构建并部署到 GitHub Pages。推送至 `main` 分支即可触发部署。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project is automatically built and deployed to GitHub Pages via GitHub Actions. Pushing to the `main` branch triggers the deployment.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 数据来源 / Data Source
 
-## Deploy on Vercel
+所有文明分级、战争形态、毁灭能力与个体演变的原始设定均整理自 `req.md`。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+All civilization tiers, warfare modes, destruction capabilities, and individual evolution narratives are derived from `req.md`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+Powered by curiosity and caffeine.
