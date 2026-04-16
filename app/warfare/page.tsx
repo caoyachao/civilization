@@ -6,7 +6,6 @@ import { t, useLang } from "@/lib/i18n";
 import { WarpReveal } from "@/components/warp-reveal";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { WeaponBadge } from "@/components/weapon-badge";
 
 const groups = [
@@ -73,9 +72,12 @@ export default function WarfarePage() {
                           <div className="mb-2 text-xs text-white/40">{lang === "zh" ? "典型战术" : "Typical Tactics"}</div>
                           <div className="flex flex-wrap gap-2">
                             {tier.warfare.tactics.map((item, i) => (
-                              <Badge key={i} variant="outline" className="border-white/10 text-white/70">
-                                {t(item, lang)}
-                              </Badge>
+                              <WeaponBadge
+                                key={i}
+                                name={item.name}
+                                desc={item.desc}
+                                className="cursor-default rounded-full border border-white/10 px-2.5 py-0.5 text-xs text-white/70 transition-colors hover:border-white/20 hover:bg-white/5"
+                              />
                             ))}
                           </div>
                         </div>
