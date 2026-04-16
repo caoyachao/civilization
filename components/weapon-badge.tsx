@@ -17,7 +17,7 @@ export function WeaponBadge({ name, desc, className, style }: WeaponBadgeProps) 
   const label = lang === "zh" ? name.zh : name.en;
   const description = lang === "zh" ? desc.zh : desc.en;
   const badgeRef = useRef<HTMLSpanElement>(null);
-  const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
+  const [pos, setPos] = useState<{ left: number; top: number; placement: "top" | "bottom" } | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -27,13 +27,20 @@ export function WeaponBadge({ name, desc, className, style }: WeaponBadgeProps) 
   const show = () => {
     const rect = badgeRef.current?.getBoundingClientRect();
     if (!rect) return;
+
     const tooltipWidth = Math.min(256, window.innerWidth - 24);
     let left = rect.left + rect.width / 2;
     const minLeft = tooltipWidth / 2 + 12;
     const maxLeft = window.innerWidth - tooltipWidth / 2 - 12;
     if (left < minLeft) left = minLeft;
     if (left > maxLeft) left = maxLeft;
-    setPos({ left, top: rect.top + window.scrollY });
+
+    const spaceAbove = rect.top;
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const placement: "top" | "bottom" = spaceAbove < 90 && spaceBelow > spaceAbove ? "bottom" : "top";
+
+    const top = placement === "top" ? rect.top : rect.bottom;
+    setPos({ left, top, placement });
   };
 
   const hide = () => setPos(null);
@@ -44,14 +51,24 @@ export function WeaponBadge({ name, desc, className, style }: WeaponBadgeProps) 
       style={{
         left: pos?.left ?? 0,
         top: pos?.top ?? 0,
-        transform: "translate(-50%, -100%) translateY(-8px)",
+        transform:
+          pos?.placement === "bottom"
+            ? "translate(-50%, 0) translateY(8px)"
+            : "translate(-50%, -100%) translateY(-8px)",
       }}
     >
       <span className="block rounded-lg border border-white/10 bg-[#0b0b12]/95 px-3 py-2 text-xs text-white/80 shadow-xl backdrop-blur-md">
         <span className="mb-1 block font-medium text-white">{label}</span>
         <span className="block leading-relaxed text-white/70">{description}</span>
       </span>
-      <span className="absolute left-1/2 top-full -mt-0.5 h-1.5 w-1.5 -translate-x-1/2 rotate-45 border-b border-r border-white/10 bg-[#0b0b12]/95" />
+      <span
+        className={[
+          "absolute left-1/2 h-1.5 w-1.5 -translate-x-1/2 rotate-45 border-white/10 bg-[#0b0b12]/95",
+          pos?.placement === "bottom"
+            ? "-top-0.5 border-l border-t"
+            : "-bottom-0.5 border-b border-r",
+        ].join(" ")}
+      />
     </span>
   );
 
